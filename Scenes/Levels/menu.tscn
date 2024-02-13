@@ -1,0 +1,218 @@
+[gd_scene load_steps=16 format=3 uid="uid://cpg3o00fvpjp1"]
+
+[ext_resource type="Texture2D" uid="uid://c8aywtvry2e8t" path="res://Assets/Textures/menu/black.png" id="1_218ft"]
+[ext_resource type="Texture2D" uid="uid://i2j1wooeop1q" path="res://Assets/Textures/backgrounds/woodbg1.png" id="1_pepjt"]
+[ext_resource type="Script" path="res://Scripts/buttons/StartButton.gd" id="2_kv41y"]
+[ext_resource type="Texture2D" uid="uid://dtxehi60ich30" path="res://Assets/Textures/menu/title.png" id="2_tc2st"]
+[ext_resource type="Texture2D" uid="uid://c2fq1ncc45ri4" path="res://Assets/Textures/particles/ember.png" id="3_vg6kh"]
+[ext_resource type="Script" path="res://Scenes/LevelSelectorEnter.gd" id="3_wjdo2"]
+[ext_resource type="Texture2D" uid="uid://nrb0efucflsg" path="res://Assets/Textures/backgrounds/lightbg.png" id="4_yrhlr"]
+[ext_resource type="Script" path="res://Scripts/buttons/LoadButton.gd" id="5_gf4w8"]
+[ext_resource type="Texture2D" uid="uid://dsjtxgrfb1lde" path="res://Assets/Textures/backgrounds/development.png" id="8_c8lfq"]
+
+[sub_resource type="Theme" id="Theme_16h86"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ed1i8"]
+
+[sub_resource type="Animation" id="Animation_w61yc"]
+resource_name = "Boot"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../BgLimits/limits:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3.6, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D2:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5, 6.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../BgLimits:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.7, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2yg7i"]
+resource_name = "skip"
+length = 0.0605
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../BgLimits/limits:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D2:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../BgLimits:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epd63"]
+_data = {
+"Boot": SubResource("Animation_w61yc"),
+"skip": SubResource("Animation_2yg7i")
+}
+
+[sub_resource type="Gradient" id="Gradient_8ybeh"]
+colors = PackedColorArray(1, 0.936, 0.04, 1, 0.29, 0.164333, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.0901961, 0.0901961, 0.0901961, 1)
+position = Vector2(577.462, 323)
+scale = Vector2(1.03365, 1.05833)
+texture = ExtResource("1_pepjt")
+
+[node name="Button" type="MenuButton" parent="."]
+light_mask = 0
+offset_left = 496.0
+offset_top = 497.0
+offset_right = 651.0
+offset_bottom = 548.0
+theme = SubResource("Theme_16h86")
+button_group = SubResource("ButtonGroup_ed1i8")
+text = "New Game"
+flat = false
+item_count = 2
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Standard"
+popup/item_1/id = 1
+script = ExtResource("2_kv41y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button"]
+libraries = {
+"": SubResource("AnimationLibrary_epd63")
+}
+
+[node name="Button3" type="Button" parent="."]
+light_mask = 0
+offset_left = 991.19
+offset_top = 565.8
+offset_right = 1146.19
+offset_bottom = 616.8
+theme = SubResource("Theme_16h86")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+text = "Level Select
+(debug)"
+script = ExtResource("3_wjdo2")
+
+[node name="Button2" type="Button" parent="."]
+light_mask = 0
+offset_left = 496.0
+offset_top = 555.1
+offset_right = 651.0
+offset_bottom = 606.1
+theme = SubResource("Theme_16h86")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+text = "Load Game"
+script = ExtResource("5_gf4w8")
+
+[node name="BgLimits" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(2.25586, 2.24306)
+texture = ExtResource("1_218ft")
+centered = false
+
+[node name="limits" type="Sprite2D" parent="BgLimits"]
+self_modulate = Color(1, 1, 1, 0)
+light_mask = 2
+position = Vector2(250.016, 139.096)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("8_c8lfq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+light_mask = 2
+position = Vector2(577.462, 230.57)
+scale = Vector2(0.89916, 0.89916)
+texture = ExtResource("2_tc2st")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D2"]
+show_behind_parent = true
+position = Vector2(-168.448, 544.665)
+scale = Vector2(5.19374, 5.19374)
+amount = 40
+lifetime = 41.54
+texture = ExtResource("3_vg6kh")
+emission_shape = 3
+emission_rect_extents = Vector2(124.72, 1)
+direction = Vector2(1.965, -3.03)
+spread = 7.3
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+color_ramp = SubResource("Gradient_8ybeh")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D2"]
+show_behind_parent = true
+scale = Vector2(1.0876, 0.86478)
+color = Color(0.968627, 1, 0.0392157, 1)
+energy = 16.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_item_cull_mask = 2
+texture = ExtResource("4_yrhlr")
+texture_scale = 1.3
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="Button2" method="_on_button_pressed"]
+[connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]

@@ -1,0 +1,169 @@
+[gd_scene load_steps=20 format=3 uid="uid://b2jgp3j04aa7t"]
+
+[ext_resource type="Script" path="res://Scripts/bosses/vineattack.gd" id="1_40xst"]
+[ext_resource type="Texture2D" uid="uid://bchivxxprm6y" path="res://Assets/Textures/enemies/vineattack1.png" id="2_jcrbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0e8w"]
+size = Vector2(90, 1295.49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee58v"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(0, 0, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x4g5"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(356, 0, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n05x"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(712, 0, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi7i3"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(1068, 0, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltxx4"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(0, 356, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wacyw"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(356, 356, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5b0q"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(712, 356, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxp86"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(1068, 356, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xibv"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(0, 712, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqeil"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(356, 712, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tds5"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(712, 712, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwo6m"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(1068, 712, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwhhi"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(0, 1068, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sja3"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(356, 1068, 356, 356)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsram"]
+atlas = ExtResource("2_jcrbx")
+region = Rect2(712, 1068, 356, 356)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ia2hp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee58v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x4g5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n05x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi7i3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltxx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wacyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5b0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxp86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xibv")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_yqeil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tds5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwo6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwhhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sja3")
+}, {
+"duration": 20.0,
+"texture": SubResource("AtlasTexture_nsram")
+}],
+"loop": false,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[node name="Area2D" type="Area2D" groups=["enemies"]]
+script = ExtResource("1_40xst")
+
+[node name="hit" type="CollisionShape2D" parent="." groups=["enemies"]]
+position = Vector2(72.0815, 2.9755)
+rotation = 1.61094
+shape = SubResource("RectangleShape2D_g0e8w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-101, -112)
+rotation = 3.18174
+scale = Vector2(3.625, 5.676)
+sprite_frames = SubResource("SpriteFrames_ia2hp")
+animation = &"fire"
+speed_scale = 3.09
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.22
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="Timer3" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="climbe" type="Area2D" parent="." groups=["vine"]]
+
+[node name="col" type="CollisionShape2D" parent="climbe" groups=["enemies"]]
+position = Vector2(-113.082, -4.46163)
+rotation = 1.61094
+shape = SubResource("RectangleShape2D_g0e8w")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]
+[connection signal="area_entered" from="climbe" to="." method="_on_climbe_area_entered"]
+[connection signal="area_exited" from="climbe" to="." method="_on_climbe_area_exited"]

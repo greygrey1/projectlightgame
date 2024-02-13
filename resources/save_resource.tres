@@ -1,0 +1,33 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dealvh6yriie"]
+
+[sub_resource type="GDScript" id="GDScript_e0q3o"]
+script/source = "extends Resource
+@export var skill: int
+@export var sub_resource: Resource
+@export var arrayi: PackedStringArray
+@export var saved_position: Vector2
+@export var saved_scene: String
+@export var items : ItemList
+@export var progress : int
+@export var open_doors : PackedStringArray
+
+func _init(p_skill = 0, p_sub_resource = null, p_strings = [], p_progress = 0, p_saved_position = Vector2(0,0), p_saved_scene = \"hello\"):
+	print(saved_position, \"(from: save_resource.gd)\")
+	progress = p_progress
+	skill = p_skill
+	sub_resource = p_sub_resource
+	if open_doors == null:
+		open_doors = [\"null\"]
+	
+	saved_scene =  p_saved_scene
+	
+"
+
+[resource]
+script = SubResource("GDScript_e0q3o")
+skill = 0
+arrayi = PackedStringArray()
+saved_position = Vector2(0, 0)
+saved_scene = ""
+progress = 0
+open_doors = PackedStringArray()

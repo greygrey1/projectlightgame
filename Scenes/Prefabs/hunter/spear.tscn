@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjbn3s7ej34fp"]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/hunter/spear.gd" id="1_1dbwd"]
+[ext_resource type="Texture2D" uid="uid://coxqew7tkq4ap" path="res://Assets/Textures/things/spear.png" id="1_vxenn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3gqn"]
+size = Vector2(102, 20)
+
+[node name="Spear" type="Area2D"]
+collision_mask = 16777217
+script = ExtResource("1_1dbwd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_d3gqn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, 53)
+rotation = 1.5708
+texture = ExtResource("1_vxenn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

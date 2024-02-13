@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj677v1xy4b8y"]
+
+[ext_resource type="Script" path="res://Scripts/camborderadjust.gd" id="1_2hb4r"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_2hb4r")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://pxa3uh4k0l6j"]
+
+[ext_resource type="Script" path="res://Scripts/trampoline.gd" id="1_a2di3"]
+[ext_resource type="Texture2D" uid="uid://ckm0m0d6eqihf" path="res://Assets/Textures/things/trampoline.png" id="2_c1lvl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2vfy"]
+size = Vector2(42, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx5ua"]
+atlas = ExtResource("2_c1lvl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb0f7"]
+atlas = ExtResource("2_c1lvl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwj34"]
+atlas = ExtResource("2_c1lvl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80yyv"]
+atlas = ExtResource("2_c1lvl")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lltad"]
+atlas = ExtResource("2_c1lvl")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlh3y"]
+atlas = ExtResource("2_c1lvl")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v3byy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx5ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb0f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwj34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80yyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lltad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlh3y")
+}],
+"loop": false,
+"name": &"boing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx5ua")
+}],
+"loop": true,
+"name": &"start",
+"speed": 5.0
+}]
+
+[node name="Trampoline" type="Area2D"]
+scale = Vector2(1.675, 1.675)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_e2vfy")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_a2di3")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(0, -5.93)
+scale = Vector2(2.695, 2.695)
+sprite_frames = SubResource("SpriteFrames_v3byy")
+animation = &"boing"
+frame = 5
+frame_progress = 1.0
+speed_scale = 2.045
+
+[connection signal="area_entered" from="." to="Node2D" method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="Node2D/Sprite2D" to="Node2D" method="_on_sprite_2d_animation_finished"]

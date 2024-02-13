@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://doej1p6ybwhbl"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/HoverBug.gd" id="1_7w2g1"]
+[ext_resource type="Texture2D" uid="uid://cjlu3h6qgbyvv" path="res://Assets/Spritesheet/enemies/hoverbug.png" id="2_rra7b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym8rn"]
+atlas = ExtResource("2_rra7b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keqta"]
+atlas = ExtResource("2_rra7b")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snq1x"]
+atlas = ExtResource("2_rra7b")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2sc4"]
+atlas = ExtResource("2_rra7b")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_opy1s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ym8rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_keqta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snq1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2sc4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76685"]
+size = Vector2(64, 70)
+
+[node name="HoverBug" type="StaticBody2D" groups=["enemies"]]
+script = ExtResource("1_7w2g1")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.27, 3.366)
+sprite_frames = SubResource("SpriteFrames_opy1s")
+autoplay = "default"
+frame_progress = 0.384988
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 8)
+shape = SubResource("RectangleShape2D_76685")

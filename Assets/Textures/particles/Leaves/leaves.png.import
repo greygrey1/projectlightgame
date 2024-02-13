@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://qoc3k6ss1hri"
+path="res://.godot/imported/leaves.png-68a675ed3cbfbf5462d31ed858730c10.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Assets/Textures/particles/Leaves/leaves.png"
+dest_files=["res://.godot/imported/leaves.png-68a675ed3cbfbf5462d31ed858730c10.ctexarray"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+slices/horizontal=5
+slices/vertical=2

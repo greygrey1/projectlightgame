@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=3 uid="uid://bq4j2tqb74bja"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Wolf2.gd" id="1_h3lq5"]
+[ext_resource type="Texture2D" uid="uid://23j8hxelca57" path="res://Assets/Textures/enemies/wolf/wolf2.png" id="2_yg1ot"]
+[ext_resource type="Texture2D" uid="uid://wxhc0jhwbebv" path="res://Assets/Textures/enemies/wolf/wolf3.png" id="3_vlvmq"]
+[ext_resource type="Texture2D" uid="uid://dk5qb0v8ecvri" path="res://Assets/Textures/enemies/wolf/wolf4.png" id="4_oaaeo"]
+[ext_resource type="Texture2D" uid="uid://bd7e2c0ins4v4" path="res://Assets/Textures/enemies/wolf/wolf5.png" id="5_w1wrp"]
+[ext_resource type="Texture2D" uid="uid://dckpx4m4vetmm" path="res://Assets/Textures/enemies/wolf/wolf.png" id="6_66mro"]
+[ext_resource type="AudioStream" uid="uid://6hlwacno8qe0" path="res://Assets/Sound/FX/Crunch.mp3" id="7_5c06j"]
+[ext_resource type="AudioStream" uid="uid://skbk1j5v7pu" path="res://Assets/Sound/FX/Grunt.wav" id="8_r6l3c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nel0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yg1ot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vlvmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oaaeo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w1wrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_66mro")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ivqae"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c52w3"]
+_data = {
+"new_animation": SubResource("Animation_ivqae")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_akb5r"]
+radius = 44.0454
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opssd"]
+size = Vector2(174, 84)
+
+[node name="Wolf" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(1137.29, 431.12)
+script = ExtResource("1_h3lq5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -29.665)
+scale = Vector2(0.385, 0.385)
+sprite_frames = SubResource("SpriteFrames_nel0g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_c52w3")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
+shape = SubResource("CircleShape2D_akb5r")
+
+[node name="collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision"]
+position = Vector2(15.715, -2.12)
+shape = SubResource("RectangleShape2D_opssd")
+
+[node name="WolfFrames" type="Timer" parent="."]
+wait_time = 0.404
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5c06j")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_r6l3c")
+
+[node name="WolfHit" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="area_entered" from="collision" to="." method="_on_collision_area_entered"]
+[connection signal="body_entered" from="collision" to="." method="_on_collision_body_entered"]
+[connection signal="timeout" from="WolfFrames" to="." method="_on_wolf_frames_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D2" to="." method="_on_audio_stream_player_2d_2_finished"]
+[connection signal="timeout" from="WolfHit" to="." method="_on_wolf_hit_timeout"]

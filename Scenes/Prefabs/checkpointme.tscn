@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=3 uid="uid://biijuc1ukf0py"]
+
+[ext_resource type="Script" path="res://Scripts/checkpointing.gd" id="1_8df3v"]
+[ext_resource type="Texture2D" uid="uid://dokm2owxh0kpo" path="res://Assets/Textures/things/fire/fire1.png" id="2_cy3ad"]
+[ext_resource type="Texture2D" uid="uid://ci7fvdp4e7qc0" path="res://Assets/Textures/things/fire/fire2.png" id="3_xs2vb"]
+[ext_resource type="Texture2D" uid="uid://b60cthuulsqcp" path="res://Assets/Textures/things/fire/fire3.png" id="4_0pplo"]
+[ext_resource type="Texture2D" uid="uid://c02w8abps52ct" path="res://Assets/Textures/things/fire/fire4.png" id="5_2o8ml"]
+[ext_resource type="Texture2D" uid="uid://4etd5urt1fvc" path="res://Assets/Textures/things/fire/fire5.png" id="6_5mx6s"]
+[ext_resource type="Texture2D" uid="uid://dof8ev61it2qh" path="res://Assets/Textures/things/fire/fire6.png" id="7_s1oak"]
+[ext_resource type="Texture2D" uid="uid://dl2ueim7yvhhf" path="res://Assets/Textures/things/fire/fire7.png" id="8_vhin3"]
+[ext_resource type="Texture2D" uid="uid://dcvfj264x0h2o" path="res://Assets/Textures/things/fire/fire8.png" id="9_kiyyo"]
+[ext_resource type="Texture2D" uid="uid://hq0n70xwemfw" path="res://Assets/Textures/things/fire/put out.png" id="10_5xfji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6xqr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u31ts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cy3ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xs2vb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0pplo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2o8ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5mx6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s1oak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vhin3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kiyyo")
+}],
+"loop": true,
+"name": &"burning",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_5xfji")
+}],
+"loop": true,
+"name": &"put_out",
+"speed": 5.0
+}]
+
+[node name="checkpointme" type="Area2D"]
+unique_name_in_owner = true
+position = Vector2(0, -49.37)
+script = ExtResource("1_8df3v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5.975, 5.975)
+shape = SubResource("RectangleShape2D_x6xqr")
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 0.345)
+scale = Vector2(0.52, 0.52)
+sprite_frames = SubResource("SpriteFrames_u31ts")
+animation = &"burning"
+speed_scale = 1.94
+metadata/_edit_lock_ = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

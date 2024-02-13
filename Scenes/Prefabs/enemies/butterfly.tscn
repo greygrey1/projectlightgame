@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://c58hrhv5sf25j"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/butterfly.gd" id="1_epcfq"]
+[ext_resource type="Texture2D" uid="uid://bbhuurisgk07u" path="res://Assets/Spritesheet/enemies/metalbutterfly.png" id="2_ynv13"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgdph"]
+size = Vector2(35, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7np0"]
+atlas = ExtResource("2_ynv13")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rahu8"]
+atlas = ExtResource("2_ynv13")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j06bi"]
+atlas = ExtResource("2_ynv13")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52xyi"]
+atlas = ExtResource("2_ynv13")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfpt5"]
+atlas = ExtResource("2_ynv13")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4rcl"]
+atlas = ExtResource("2_ynv13")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fn2t"]
+atlas = ExtResource("2_ynv13")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojjwu"]
+atlas = ExtResource("2_ynv13")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpqvg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7np0")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_rahu8")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_j06bi")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_52xyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfpt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4rcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fn2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojjwu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tfru4"]
+size = Vector2(36, 23)
+
+[node name="Butterfly" type="Node2D"]
+script = ExtResource("1_epcfq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -8.5)
+shape = SubResource("RectangleShape2D_jgdph")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(11, -4)
+sprite_frames = SubResource("SpriteFrames_mpqvg")
+autoplay = "default"
+frame_progress = 0.692762
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 1.5)
+shape = SubResource("RectangleShape2D_tfru4")

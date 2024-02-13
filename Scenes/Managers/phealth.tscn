@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7p1uurkg24xd"]
+
+[ext_resource type="Script" path="res://Scripts/Player Health.gd" id="1_bfhfo"]
+
+[node name="phealth" type="Node2D"]
+script = ExtResource("1_bfhfo")
+
+[node name="ItemList" type="ItemList" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0

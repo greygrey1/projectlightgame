@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctjked57v27fu"]
+
+[ext_resource type="AudioStream" uid="uid://brsd7hei0v4u2" path="res://Assets/Sound/Music/heart.mp3" id="1_p6xv1"]
+[ext_resource type="Script" path="res://Scripts/bgmusic.gd" id="2_6v6su"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_p6xv1")
+script = ExtResource("2_6v6su")

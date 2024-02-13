@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://dssx8cc1tb5y"]
+
+[ext_resource type="Script" path="res://Scripts/shop/ShopV2.gd" id="1_tkae3"]
+[ext_resource type="Texture2D" uid="uid://cax5rgp6mj2kg" path="res://Assets/Textures/shop/5065a1c88835d5e1a1b41ce6a6cfe778.svg" id="2_pb8lo"]
+[ext_resource type="Texture2D" uid="uid://dxy1iubvhxl88" path="res://Assets/Textures/shop/a9911d62eb2f64298fca00d85aea02f4.svg" id="3_bti53"]
+[ext_resource type="FontFile" uid="uid://culdxfnfr62tr" path="res://Assets/Fonts/OldWizard.ttf" id="4_m1tl6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wag7r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pb8lo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pb8lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bti53")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c2uki"]
+radius = 13.9284
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltald"]
+size = Vector2(1030, 578)
+
+[node name="ShopV2" type="Node2D"]
+script = ExtResource("1_tkae3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -2
+texture_filter = 1
+scale = Vector2(4.28, 4.28)
+sprite_frames = SubResource("SpriteFrames_wag7r")
+frame_progress = 0.967425
+
+[node name="diatimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 190.0
+offset_top = 144.0
+offset_right = 382.0
+offset_bottom = 224.0
+scale = Vector2(1.58, 1.58)
+theme_override_fonts/normal_font = ExtResource("4_m1tl6")
+scroll_active = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_c2uki")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("RectangleShape2D_ltald")
+
+[node name="Checkout" type="Button" parent="."]
+offset_left = 390.935
+offset_top = 52.83
+offset_right = 471.935
+offset_bottom = 83.83
+scale = Vector2(1.135, 1.135)
+text = "Checkout"
+
+[connection signal="pressed" from="Checkout" to="." method="_on_checkout_pressed"]

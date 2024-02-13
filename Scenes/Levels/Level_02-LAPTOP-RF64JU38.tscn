@@ -1,0 +1,615 @@
+[gd_scene load_steps=59 format=3 uid="uid://ctbcgoasv74mq"]
+
+[ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_lpo2y"]
+[ext_resource type="AudioStream" uid="uid://c0mxeduty84os" path="res://Assets/Sound/FX/dash.wav" id="2_xe2vt"]
+[ext_resource type="Script" path="res://Assets/AudioStreamPlayer2D.gd" id="3_e8nlj"]
+[ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="3_nht2m"]
+[ext_resource type="AudioStream" uid="uid://dh7d57w53c6wg" path="res://Assets/Sound/FX/sounda3.wav" id="4_25opt"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="4_ndpt4"]
+[ext_resource type="Script" path="res://Scripts/GameUI.gd" id="6_um0jo"]
+[ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_ns8o6"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_doswy"]
+[ext_resource type="Texture2D" uid="uid://dvtlb7a8ww1q5" path="res://Assets/tileset.png" id="8_r4koj"]
+[ext_resource type="Texture2D" uid="uid://c50subwkspjlk" path="res://Assets/Textures/particles/leaf.png" id="9_grmm5"]
+[ext_resource type="Script" path="res://Scripts/RichTextLabel.gd" id="10_ocujr"]
+[ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="11_o7x5r"]
+[ext_resource type="Script" path="res://Assets/Textures/enemies/wolf/Wolf.gd" id="13_mba7b"]
+[ext_resource type="Texture2D" uid="uid://23j8hxelca57" path="res://Assets/Textures/enemies/wolf/wolf2.png" id="14_4ta37"]
+[ext_resource type="Script" path="res://Scripts/LevelFinishDoor.gd" id="14_jfn55"]
+[ext_resource type="Texture2D" uid="uid://wxhc0jhwbebv" path="res://Assets/Textures/enemies/wolf/wolf3.png" id="15_nqelb"]
+[ext_resource type="Texture2D" uid="uid://dk5qb0v8ecvri" path="res://Assets/Textures/enemies/wolf/wolf4.png" id="16_m5yoo"]
+[ext_resource type="Texture2D" uid="uid://bd7e2c0ins4v4" path="res://Assets/Textures/enemies/wolf/wolf5.png" id="17_brf5w"]
+[ext_resource type="Texture2D" uid="uid://dckpx4m4vetmm" path="res://Assets/Textures/enemies/wolf/wolf.png" id="18_odce2"]
+[ext_resource type="AudioStream" uid="uid://6hlwacno8qe0" path="res://Assets/Sound/FX/Crunch.mp3" id="19_g7w1n"]
+[ext_resource type="AudioStream" uid="uid://skbk1j5v7pu" path="res://Assets/Sound/FX/Grunt.wav" id="20_r7qge"]
+[ext_resource type="Texture2D" uid="uid://c8aywtvry2e8t" path="res://Assets/Textures/menu/black.png" id="21_x7pxq"]
+[ext_resource type="Texture2D" uid="uid://cd5jtiww85bxu" path="res://Assets/Textures/backgrounds/forest cave.png" id="22_tlpoa"]
+[ext_resource type="Texture2D" uid="uid://dokm2owxh0kpo" path="res://Assets/Textures/things/fire/fire1.png" id="24_lvats"]
+[ext_resource type="Texture2D" uid="uid://ci7fvdp4e7qc0" path="res://Assets/Textures/things/fire/fire2.png" id="25_14p7w"]
+[ext_resource type="Texture2D" uid="uid://b60cthuulsqcp" path="res://Assets/Textures/things/fire/fire3.png" id="26_krcvw"]
+[ext_resource type="Texture2D" uid="uid://c02w8abps52ct" path="res://Assets/Textures/things/fire/fire4.png" id="27_bfntc"]
+[ext_resource type="Texture2D" uid="uid://4etd5urt1fvc" path="res://Assets/Textures/things/fire/fire5.png" id="28_1tea1"]
+[ext_resource type="Texture2D" uid="uid://dof8ev61it2qh" path="res://Assets/Textures/things/fire/fire6.png" id="29_bgpg6"]
+[ext_resource type="Texture2D" uid="uid://dl2ueim7yvhhf" path="res://Assets/Textures/things/fire/fire7.png" id="30_fyy0i"]
+[ext_resource type="Texture2D" uid="uid://dcvfj264x0h2o" path="res://Assets/Textures/things/fire/fire8.png" id="31_fgkxn"]
+[ext_resource type="Texture2D" uid="uid://hq0n70xwemfw" path="res://Assets/Textures/things/fire/put out.png" id="32_l3ybb"]
+
+[sub_resource type="Animation" id="Animation_70o56"]
+resource_name = "deathanim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1000), Vector2(0, -100), Vector2(0, -100), Vector2(0, -1300)]
+}
+
+[sub_resource type="Animation" id="Animation_ql3pl"]
+resource_name = "reset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1000), Vector2(0, 1000)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2sv1i"]
+_data = {
+"deathanim": SubResource("Animation_70o56"),
+"reset": SubResource("Animation_ql3pl")
+}
+
+[sub_resource type="Animation" id="Animation_rggmj"]
+resource_name = "Gamesaved"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameSaved:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0uu1c"]
+resource_name = "checkpoint"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CheckpointText:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rnuc8"]
+resource_name = "checkpointend"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CheckpointText:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yaxd"]
+_data = {
+"Gamesaved": SubResource("Animation_rggmj"),
+"checkpoint": SubResource("Animation_0uu1c"),
+"checkpointend": SubResource("Animation_rnuc8")
+}
+
+[sub_resource type="TileSet" id="TileSet_2fcbi"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q7xhs"]
+texture = ExtResource("8_r4koj")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.54074, -8, 8, -8, 8, 8, -6.54074, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 6.54074, -8, 6.36396, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:7/0 = 0
+1:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:7/0/physics_layer_0/angular_velocity = 0.0
+1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6, 8, -6, 8, 8, -8, 8)
+0:7/0 = 0
+0:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:7/0/physics_layer_0/angular_velocity = 0.0
+0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6, 8, -6, 8, 8, -8, 8)
+2:7/0 = 0
+2:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:7/0/physics_layer_0/angular_velocity = 0.0
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6, 6, -6, 6.18719, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_xhgtn"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_q7xhs")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kh5g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_id4vs"]
+
+[sub_resource type="Animation" id="Animation_0gjnt"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_maxm0"]
+resource_name = "textfade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8yb2a"]
+_data = {
+"fadein": SubResource("Animation_0gjnt"),
+"textfade": SubResource("Animation_maxm0")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j7yv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_4ta37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nqelb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_m5yoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_brf5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_odce2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ivqae"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c52w3"]
+_data = {
+"new_animation": SubResource("Animation_ivqae")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_doep7"]
+radius = 44.0454
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u76kh"]
+size = Vector2(174, 84)
+
+[sub_resource type="Sky" id="Sky_wmff0"]
+
+[sub_resource type="Environment" id="Environment_2gqug"]
+background_mode = 3
+sky = SubResource("Sky_wmff0")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_vlpdu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ftju"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1phy4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_lvats")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_14p7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_krcvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_bfntc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_1tea1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_bgpg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_fyy0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_fgkxn")
+}],
+"loop": true,
+"name": &"burning",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_l3ybb")
+}],
+"loop": true,
+"name": &"put_out",
+"speed": 5.0
+}]
+
+[node name="Level_02" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_lpo2y")]
+z_index = 1
+position = Vector2(150, 318)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(16, 36)
+zoom = Vector2(1.27, 1.27)
+limit_left = -205
+limit_bottom = 705
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.03
+drag_top_margin = 0.03
+drag_right_margin = 0.03
+drag_bottom_margin = 0.03
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="AudioPlayy" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("2_xe2vt")
+script = ExtResource("3_e8nlj")
+
+[node name="feet" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("4_25opt")
+script = ExtResource("3_e8nlj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+root_node = NodePath("../../WorldEnvironment/Deathover/DeathOverlay2")
+libraries = {
+"": SubResource("AnimationLibrary_2sv1i")
+}
+
+[node name="Checkaim" type="AnimationPlayer" parent="Player"]
+root_node = NodePath("../../UserInterface/GameUI")
+libraries = {
+"": SubResource("AnimationLibrary_2yaxd")
+}
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(696, 416)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(864, 353)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(1024, 416)
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("4_ndpt4")
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Traps" type="TileMap" parent="Level" groups=["Traps"]]
+texture_filter = 1
+tile_set = SubResource("TileSet_2fcbi")
+collision_visibility_mode = 2
+navigation_visibility_mode = 2
+format = 2
+
+[node name="SpawnPoint" type="Marker2D" parent="Level"]
+unique_name_in_owner = true
+position = Vector2(151.145, 428.335)
+
+[node name="TileMap" type="TileMap" parent="Level" groups=["Ground"]]
+texture_filter = 1
+position = Vector2(-1, 0)
+scale = Vector2(4.21, 4.21)
+tile_set = SubResource("TileSet_xhgtn")
+collision_visibility_mode = 2
+navigation_visibility_mode = 2
+format = 2
+layer_0/tile_data = PackedInt32Array(458754, 131072, 0, 458755, 131072, 0, 458756, 131072, 0, 458757, 131072, 0, 458753, 131072, 0, 458752, 131072, 0, 458751, 262144, 0, 393215, 262144, 0, 327679, 262144, 0, 262143, 262144, 0, 524287, 65536, 0, 589823, 131072, 1, 524288, 131072, 1, 524289, 131072, 1, 524290, 131072, 1, 524291, 131072, 1, 524292, 131072, 1, 524293, 131072, 1, 458759, 0, 7, 458760, 65536, 7, 458761, 65536, 7, 458764, 131072, 0, 458765, 131072, 0, 458766, 131072, 0, 458767, 131072, 0, 458768, 131072, 0, 458769, 131072, 0, 458770, 131072, 0, 458771, 131072, 0, 524300, 131072, 1, 524301, 131072, 1, 524302, 131072, 1, 524303, 131072, 1, 524304, 131072, 1, 524305, 131072, 1, 524306, 131072, 1, 524307, 131072, 1, 196607, 262144, 0, 131071, 262144, 0, 65535, 131072, 1, 0, 131072, 2, 1, 131072, 2, 2, 131072, 2, 3, 131072, 2, 4, 131072, 2, 5, 131072, 2, 6, 131072, 2, 7, 131072, 2, 8, 131072, 2, 9, 131072, 2, 10, 131072, 2, 11, 131072, 2, 12, 131072, 2, 13, 131072, 2, 14, 131072, 2, 15, 131072, 2, 16, 131072, 2, 17, 131072, 2, -65519, 131072, 1, -65518, 131072, 1, 18, 131072, 2, 19, 131072, 2, 20, 131072, 2, 65557, 0, 0, 131093, 0, 0, 196629, 0, 0, 458773, 131072, 0, 458772, 131072, 0, 524309, 131072, 1, 524308, 131072, 1, 589845, 131072, 1, 589844, 131072, 1, 589843, 131072, 1, 589842, 131072, 1, 589841, 131072, 1, 589840, 131072, 1, 589839, 131072, 1, 589838, 131072, 1, 589837, 131072, 1, 589836, 131072, 1, 589835, 131072, 1, 589834, 131072, 1, 589833, 131072, 1, 589832, 131072, 1, 589831, 131072, 1, 589830, 131072, 1, 589829, 131072, 1, 589828, 131072, 1, 589827, 131072, 1, 589826, 131072, 1, 589825, 131072, 1, 589824, 131072, 1, 655359, 131072, 1, 720895, 131072, 1, 655360, 131072, 1, 655361, 131072, 1, 655362, 131072, 1, 655363, 131072, 1, 655364, 131072, 1, 655365, 131072, 1, 655366, 131072, 1, 655367, 131072, 1, 655368, 131072, 1, 655369, 131072, 1, 655370, 131072, 1, 655371, 131072, 1, 655372, 131072, 1, 655373, 131072, 1, 655374, 131072, 1, 655375, 131072, 1, 655376, 131072, 1, 655377, 131072, 1, 655378, 131072, 1, 655379, 131072, 1, 655380, 131072, 1, 655381, 131072, 1, 720915, 131072, 1, 720914, 131072, 1, 720913, 131072, 1, 720912, 131072, 1, 720911, 131072, 1, 720910, 131072, 1, 720909, 131072, 1, 720908, 131072, 1, 720907, 131072, 1, 720906, 131072, 1, 720905, 131072, 1, 720904, 131072, 1, 720903, 131072, 1, 720902, 131072, 1, 720894, 131072, 1, 786430, 131072, 1, 786431, 131072, 1, 720896, 131072, 1, 720897, 131072, 1, 720898, 131072, 1, 720899, 131072, 1, 720900, 131072, 1, 786429, 131072, 1, 720893, 131072, 1, 655357, 131072, 1, 589821, 131072, 1, 524285, 131072, 1, 458749, 131072, 1, 393213, 131072, 1, 327677, 131072, 1, 262141, 131072, 1, 196605, 131072, 1, 131069, 131072, 1, 131070, 131072, 1, 65534, 131072, 1, -2, 131072, 1, 196606, 131072, 1, 262142, 131072, 1, 327678, 131072, 1, 393214, 131072, 1, 655358, 131072, 1, 589822, 131072, 1, 524286, 131072, 1, 458750, 131072, 1, 65533, 131072, 1, -3, 131072, 1, -1, 131072, 1, -65536, 131072, 1, -65535, 131072, 1, -65534, 131072, 1, -65533, 131072, 1, -65532, 131072, 1, -65531, 131072, 1, -65530, 131072, 1, -65529, 131072, 1, -65528, 131072, 1, -65527, 131072, 1, -65526, 131072, 1, -65525, 131072, 1, -65524, 131072, 1, -65523, 131072, 1, -65522, 131072, 1, -65521, 131072, 1, -65520, 131072, 1, -65517, 131072, 1, -65516, 131072, 1, -65515, 131072, 1, -65514, 131072, 1, 21, 131072, 1, 22, 131072, 1, 65558, 262144, 0, 131094, 262144, 0, 196630, 262144, 0, 458774, 131072, 0, 524310, 131072, 1, 589846, 131072, 1, 655382, 131072, 1, 720918, 131072, 1, 720917, 131072, 1, 720916, 131072, 1, 720901, 131072, 1, 458762, 131072, 7, 262165, 131072, 2, 262166, 131072, 2, 458775, 131072, 0, 458776, 131072, 0, 458777, 131072, 0, 458778, 131072, 0, 458779, 131072, 0, 458780, 131072, 0, 458781, 131072, 0, 458782, 131072, 0, 458783, 131072, 0, 458784, 131072, 0, 458785, 131072, 0, 458786, 131072, 0, 458787, 131072, 0, 458788, 131072, 0, 524311, 131072, 1, 524312, 131072, 1, 524313, 131072, 1, 524314, 131072, 1, 524315, 131072, 1, 524316, 131072, 1, 524317, 131072, 1, 524318, 131072, 1, 524319, 131072, 1, 524320, 131072, 1, 524321, 131072, 1, 524322, 131072, 1, 524323, 131072, 1, 524324, 131072, 1, 589860, 131072, 1, 589859, 131072, 1, 589858, 131072, 1, 589857, 131072, 1, 589856, 131072, 1, 589855, 131072, 1, 589854, 131072, 1, 589853, 131072, 1, 589852, 131072, 1, 589851, 131072, 1, 589850, 131072, 1, 589849, 131072, 1, 589848, 131072, 1, 589847, 131072, 1, 655383, 131072, 1, 655384, 131072, 1, 655385, 131072, 1, 655386, 131072, 1, 655387, 131072, 1, 655388, 131072, 1, 655389, 131072, 1, 655390, 131072, 1, 655391, 131072, 1, 655392, 131072, 1, 655393, 131072, 1, 655394, 131072, 1, 655395, 131072, 1, 655396, 131072, 1, 720932, 131072, 1, 720931, 131072, 1, 720930, 131072, 1, 720929, 131072, 1, 720928, 131072, 1, 720927, 131072, 1, 720926, 131072, 1, 720925, 131072, 1, 720924, 131072, 1, 720920, 131072, 1, 720921, 131072, 1, 720922, 131072, 1, 720923, 131072, 1, 720919, 131072, 1, -65513, 131072, 1, -65512, 131072, 1, -65511, 131072, 1, -65510, 131072, 1, -65509, 131072, 1, -65508, 131072, 1, -65507, 131072, 1, -65506, 131072, 1, 23, 131072, 2, 24, 131072, 2, 25, 131072, 2, 26, 131072, 2, 27, 131072, 2, 28, 131072, 2, 29, 131072, 2, -65505, 131072, 1, -65504, 131072, 1, -65503, 131072, 1, -65502, 131072, 1, -65501, 131072, 1, -65500, 131072, 1, 30, 131072, 2, 31, 131072, 2, 32, 131072, 2, 33, 131072, 2, 34, 131072, 2, 35, 131072, 2, 36, 131072, 2)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Level"]
+show_behind_parent = true
+position = Vector2(1273.17, -30.5)
+scale = Vector2(54.715, 7.105)
+amount = 45
+lifetime = 41.54
+randomness = 1.0
+texture = ExtResource("9_grmm5")
+emission_shape = 3
+emission_rect_extents = Vector2(38.63, 6.17)
+direction = Vector2(-0.5, 4.62)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+
+[node name="Area2D" type="Area2D" parent="Level/CPUParticles2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/CPUParticles2D/Area2D"]
+shape = SubResource("RectangleShape2D_0kh5g")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Level"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 811.0
+offset_top = 294.0
+offset_right = 1009.0
+offset_bottom = 466.0
+text = "This one won't chase. Get too close, though, and you will get hurt. Kill it if you wish."
+script = ExtResource("10_ocujr")
+
+[node name="Area2D" type="Area2D" parent="Level/RichTextLabel"]
+position = Vector2(76.48, 125.99)
+scale = Vector2(9.545, 9.545)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/RichTextLabel/Area2D"]
+shape = SubResource("CircleShape2D_id4vs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/RichTextLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_8yb2a")
+}
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+
+[node name="GameUI" type="Control" parent="UserInterface"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_um0jo")
+
+[node name="Score" type="Control" parent="UserInterface/GameUI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreTexture" type="TextureRect" parent="UserInterface/GameUI/Score"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 116.0
+offset_bottom = 116.0
+texture = ExtResource("7_ns8o6")
+stretch_mode = 4
+
+[node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 104.0
+offset_top = 42.0
+offset_right = 148.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_doswy")
+theme_override_font_sizes/font_size = 32
+text = "x 3"
+
+[node name="CheckpointText" type="RichTextLabel" parent="UserInterface/GameUI"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 237.0
+offset_top = 141.0
+offset_right = 443.0
+offset_bottom = 164.91
+scale = Vector2(2.71, 2.71)
+text = "CHECKPOINT REACHED"
+
+[node name="GameSaved" type="RichTextLabel" parent="UserInterface/GameUI"]
+layout_mode = 0
+offset_left = 949.0
+offset_top = 587.0
+offset_right = 1155.0
+offset_bottom = 610.91
+scale = Vector2(1.98, 1.98)
+text = "Game saved."
+
+[node name="LevelFinishDoor" parent="." instance=ExtResource("11_o7x5r")]
+z_index = 1
+position = Vector2(1942, 425)
+script = ExtResource("14_jfn55")
+
+[node name="LevelReturnDoor" parent="." instance=ExtResource("11_o7x5r")]
+z_index = 1
+position = Vector2(20, 425)
+
+[node name="Enemies" type="Node" parent="." groups=["enemies"]]
+
+[node name="Wolf" type="CharacterBody2D" parent="Enemies" groups=["enemies"]]
+position = Vector2(1137.29, 431.12)
+script = ExtResource("13_mba7b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/Wolf"]
+position = Vector2(0, -29.665)
+scale = Vector2(0.385, 0.385)
+sprite_frames = SubResource("SpriteFrames_j7yv2")
+animation = &"new_animation"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/Wolf/AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_c52w3")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Wolf" groups=["enemies"]]
+shape = SubResource("CircleShape2D_doep7")
+
+[node name="collision" type="Area2D" parent="Enemies/Wolf"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Wolf/collision"]
+position = Vector2(15.715, -2.12)
+shape = SubResource("RectangleShape2D_u76kh")
+
+[node name="WolfFrames" type="Timer" parent="Enemies/Wolf"]
+wait_time = 0.404
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Enemies/Wolf"]
+stream = ExtResource("19_g7w1n")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Enemies/Wolf"]
+stream = ExtResource("20_r7qge")
+
+[node name="WolfHit" type="Timer" parent="Enemies/Wolf"]
+wait_time = 0.1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2gqug")
+camera_attributes = SubResource("CameraAttributesPractical_vlpdu")
+
+[node name="Deathover" type="CanvasLayer" parent="WorldEnvironment"]
+layer = 61
+
+[node name="DeathOverlay2" type="Sprite2D" parent="WorldEnvironment/Deathover"]
+position = Vector2(0, 1000)
+scale = Vector2(4.055, 4.055)
+texture = ExtResource("21_x7pxq")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="WorldEnvironment"]
+layer = -1
+follow_viewport_enabled = true
+follow_viewport_scale = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldEnvironment/CanvasLayer"]
+show_behind_parent = true
+position = Vector2(0, -1060)
+scale = Vector2(10.43, 10.43)
+texture = ExtResource("22_tlpoa")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="WorldEnvironment"]
+layer = -2
+follow_viewport_scale = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldEnvironment/CanvasLayer2"]
+show_behind_parent = true
+position = Vector2(0, -1060)
+scale = Vector2(10.43, 10.43)
+texture = ExtResource("22_tlpoa")
+
+[node name="checkpoint" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(153.72, 430)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="checkpoint"]
+scale = Vector2(5.975, 5.975)
+shape = SubResource("RectangleShape2D_8ftju")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="checkpoint"]
+unique_name_in_owner = true
+position = Vector2(0, 0.345)
+scale = Vector2(0.52, 0.52)
+sprite_frames = SubResource("SpriteFrames_1phy4")
+animation = &"burning"
+speed_scale = 1.94
+
+[connection signal="body_entered" from="Level/RichTextLabel/Area2D" to="Level/RichTextLabel" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Level/RichTextLabel/Area2D" to="Level/RichTextLabel" method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="Enemies/Wolf/collision" to="Enemies/Wolf" method="_on_collision_area_entered"]
+[connection signal="body_entered" from="Enemies/Wolf/collision" to="Enemies/Wolf" method="_on_collision_body_entered"]
+[connection signal="timeout" from="Enemies/Wolf/WolfFrames" to="Enemies/Wolf" method="_on_wolf_frames_timeout"]
+[connection signal="finished" from="Enemies/Wolf/AudioStreamPlayer2D2" to="Enemies/Wolf" method="_on_audio_stream_player_2d_2_finished"]
+[connection signal="timeout" from="Enemies/Wolf/WolfHit" to="Enemies/Wolf" method="_on_wolf_hit_timeout"]
+[connection signal="area_entered" from="checkpoint" to="Player" method="_on_checkpoint_area_entered"]
+[connection signal="area_entered" from="checkpoint" to="UserInterface/GameUI" method="_on_checkpoint_area_entered"]

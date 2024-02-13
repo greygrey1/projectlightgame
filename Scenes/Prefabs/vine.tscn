@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://clt54bn85dt1x"]
+
+[ext_resource type="Script" path="res://Scripts/vinescene.gd" id="1_px0m4"]
+[ext_resource type="Texture2D" uid="uid://cvddvjexdps4s" path="res://Assets/Textures/things/vine.png" id="1_ubprh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8awv"]
+size = Vector2(48, 409.274)
+
+[node name="Vine" type="Node2D"]
+script = ExtResource("1_px0m4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -209.357)
+texture = ExtResource("1_ubprh")
+metadata/_edit_lock_ = true
+
+[node name="VineArea" type="Area2D" parent="." groups=["vine"]]
+position = Vector2(0, -207.54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VineArea"]
+position = Vector2(-3, 6.36301)
+shape = SubResource("RectangleShape2D_q8awv")
+
+[connection signal="area_entered" from="VineArea" to="." method="_on_vine_area_area_entered"]
+[connection signal="area_exited" from="VineArea" to="." method="_on_vine_area_area_exited"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmxy0fa8tc00i"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Squirrel2.gd" id="1_cyucf"]
+[ext_resource type="Texture2D" uid="uid://ceh0fdje55veh" path="res://Assets/Textures/enemies/squirrel.png" id="2_ls6ss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qimv4"]
+size = Vector2(23, 249)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fn3at"]
+radius = 17.0294
+
+[node name="sq1" type="Node2D"]
+position = Vector2(834, 25)
+
+[node name="Squirrel" type="CharacterBody2D" parent="." groups=["enemies"]]
+collision_layer = 262145
+script = ExtResource("1_cyucf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Squirrel" groups=["enemies"]]
+position = Vector2(-0.999992, -2.99999)
+scale = Vector2(0.605469, 0.605469)
+texture = ExtResource("2_ls6ss")
+
+[node name="detection" type="Area2D" parent="Squirrel"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squirrel/detection"]
+position = Vector2(1.5, 114.5)
+shape = SubResource("RectangleShape2D_qimv4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squirrel" groups=["enemies"]]
+shape = SubResource("CircleShape2D_fn3at")
+
+[connection signal="body_entered" from="Squirrel/detection" to="Squirrel" method="_on_detection_body_entered"]

@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnwb2t8hbgoa3"]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/enemies/beetlebug.gd" id="1_1pb4i"]
+[ext_resource type="Texture2D" uid="uid://cnr2x0pqh61dg" path="res://Assets/Spritesheet/enemies/beetlebug.png" id="2_rn5le"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_piij6"]
+radius = 23.12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5r76"]
+atlas = ExtResource("2_rn5le")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsdrj"]
+atlas = ExtResource("2_rn5le")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co0jn"]
+atlas = ExtResource("2_rn5le")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug1h2"]
+atlas = ExtResource("2_rn5le")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwsrg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5r76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsdrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co0jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug1h2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qpt07"]
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(-0.12, 0)
+script = ExtResource("1_1pb4i")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(10.55, -18.54)
+target_position = Vector2(0.295, 46.54)
+collision_mask = 67108864
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.120001, -23)
+shape = SubResource("CircleShape2D_piij6")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-10.88, -25)
+scale = Vector2(1.065, 1.065)
+sprite_frames = SubResource("SpriteFrames_jwsrg")
+autoplay = "default"
+frame = 1
+frame_progress = 0.838302
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 1, 1)
+position = Vector2(10.77, 3)
+scale = Vector2(7, 52)
+texture = SubResource("CanvasTexture_qpt07")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

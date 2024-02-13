@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqf4l7tk5fd8t"]
+
+[ext_resource type="Script" path="res://Scenes/LevelSelect.gd" id="1_7pnwx"]
+[ext_resource type="Texture2D" uid="uid://i2j1wooeop1q" path="res://Assets/Textures/backgrounds/woodbg1.png" id="2_wioqf"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7pnwx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+self_modulate = Color(0.0901961, 0.0901961, 0.0901961, 1)
+position = Vector2(577.462, 323)
+scale = Vector2(1.03365, 1.05833)
+texture = ExtResource("2_wioqf")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(1.8, 1.8)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Level 1"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 112.625
+offset_right = 174.625
+offset_bottom = 31.0
+scale = Vector2(1.8, 1.8)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Level 2
+"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 220.985
+offset_right = 282.985
+offset_bottom = 31.0
+scale = Vector2(1.8, 1.8)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Level 3"
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 330.745
+offset_right = 392.745
+offset_bottom = 31.0
+scale = Vector2(1.8, 1.8)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Level 4"
+
+[node name="Button5" type="Button" parent="."]
+layout_mode = 0
+offset_left = 443.19
+offset_right = 505.19
+offset_bottom = 31.0
+scale = Vector2(1.8, 1.8)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Level 5"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]

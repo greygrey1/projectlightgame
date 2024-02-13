@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://61cdj1w4qp63"]
+
+[ext_resource type="Texture2D" uid="uid://c0hh3sgciykbg" path="res://Assets/Textures/tilesets/tilesnew.png" id="1_1peb0"]
+[ext_resource type="Script" path="res://Scenes/Prefabs/gameobjects/fallingtile.gd" id="1_wri0v"]
+[ext_resource type="Texture2D" uid="uid://yo17v6qe6e0w" path="res://Assets/Textures/tilesets/pickedMed.png" id="2_ob8nk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugbk1"]
+size = Vector2(64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rpob"]
+atlas = ExtResource("1_1peb0")
+region = Rect2(45, 62, 6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1o3fm"]
+size = Vector2(55, 17)
+
+[node name="fallingtile" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_wri0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2.5)
+shape = SubResource("RectangleShape2D_ugbk1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4.1, 4.1)
+texture = ExtResource("2_ob8nk")
+region_enabled = true
+region_rect = Rect2(128, 135, 16, 16)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+amount = 3
+explosiveness = 0.28
+randomness = 0.66
+texture = SubResource("AtlasTexture_5rpob")
+emission_shape = 3
+emission_rect_extents = Vector2(22.545, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+angular_velocity_min = -22.95
+angular_velocity_max = 18.45
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -27.5)
+shape = SubResource("RectangleShape2D_1o3fm")
+
+[node name="falltimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="returntimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="falltimer" to="." method="_on_falltimer_timeout"]
+[connection signal="timeout" from="returntimer" to="." method="_on_returntimer_timeout"]

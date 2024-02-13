@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6iwsxjcduw3h"]
+
+[ext_resource type="Script" path="res://Scripts/effects/Water_body.gd" id="1_1x220"]
+[ext_resource type="Shader" path="res://Scenes/Prefabs/gameobjects/water_body.gdshader" id="2_xkym5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bpvcc"]
+shader = ExtResource("2_xkym5")
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="Water_body" type="Node2D"]
+script = ExtResource("1_1x220")
+
+[node name="water_polygon" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_bpvcc")
+color = Color(0.298039, 0.25098, 1, 0.85098)

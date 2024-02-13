@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bloer8b6ca4jb"
+path="res://.godot/imported/God killer.mp3-b7cce0de50388e639b50ce3fd366c403.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Music/God killer.mp3"
+dest_files=["res://.godot/imported/God killer.mp3-b7cce0de50388e639b50ce3fd366c403.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
